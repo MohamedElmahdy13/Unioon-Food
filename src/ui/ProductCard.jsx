@@ -7,9 +7,10 @@ const StyledProductCard = styled.div`
 
   img {
     width: 100%;
+    
   }
 
-  @media only screen and (min-width: 1024px) {
+  @media only screen and (min-width: 1025px) {
     height: 380px;
   }
 
@@ -19,7 +20,7 @@ const StyledProductCard = styled.div`
     padding: 20px;
     transition: all 400ms ease-in-out;
 
-    @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: 1025px) {
       position: absolute;
       inset: 0;
       z-index: 10;
@@ -38,7 +39,7 @@ const StyledProductCard = styled.div`
     font-size: 15px;
   }
 
-  @media only screen and (min-width: 1024px) {
+  @media only screen and (min-width: 1025px) {
     .cart__buttons {
       height: 0;
       opacity: 0;
