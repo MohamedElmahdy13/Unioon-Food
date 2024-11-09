@@ -54,7 +54,7 @@ const StyledProductCard = styled.div`
     }
 
     &:hover .product {
-      box-shadow: 0 40px 10px rgba(0, 0, 0, 0.26);
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.26);
       height: 100%;
     }
   }

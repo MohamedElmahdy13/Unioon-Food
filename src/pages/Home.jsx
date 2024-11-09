@@ -3,7 +3,7 @@ import AddsSection from "../ui/AddsSection.jsx";
 import HomeSlider from "../ui/HomeSlider.jsx";
 import CategoryList from "../ui/CategoryList.jsx";
 import { Col, Container, Row } from "reactstrap";
-import ProductList from "../ui/ProductList.jsx";
+import ProductSection from "../ui/ProductSection.jsx";
 
 const Home = () => {
   return (
@@ -19,7 +19,8 @@ const Home = () => {
           <AddsSection />
         </Col>{" "}
         <Col sm={12}>
-          <ProductList />
+
+          <ProductSection/>
         </Col>
       </Row>
     </Container>
