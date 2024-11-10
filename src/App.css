@@ -41,7 +41,7 @@ button.slick-next {
     padding: 0 15px
     }
 
-.slick-list{
+.slick-slider .slick-list{
     padding:  15px 0;
     }
 

@@ -4,7 +4,8 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./Layouts/AppLayout.jsx";
 import Home from "./pages/Home.jsx";
-import Products from "./pages/Products.jsx";
+import Category from "./pages/Category.jsx";
+import { Button } from "@material-tailwind/react";
 
 export const routes = createBrowserRouter([
   {
@@ -17,8 +18,8 @@ export const routes = createBrowserRouter([
       },
 
       {
-        path: "/products",
-        element: <Products />,
+        path: "/category/:name",
+        element: <Category />,
       },
     ],
   },
