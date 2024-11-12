@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { StyledTitle } from "./headers";
-import CartButtons from "./CartButtons";
-import WishlistButton from "./WishlistButton";
+import { StyledTitle } from "../../ui/headers.jsx";
+import CartButtons from "../../ui/CartButtons.jsx";
+import WishlistButton from "../../ui/WishlistButton.jsx";
 
 const StyledProduct = styled.div`
   display: flex;
@@ -36,11 +36,13 @@ const StyledProduct = styled.div`
     padding-block: 1rem;
     border-block: 1px solid var(--color-grey-50);
   }
+
   .price {
     color: red;
     font-size: 1.4rem;
     font-weight: 700;
   }
+
   .product-footer {
     display: flex;
     align-items: center;

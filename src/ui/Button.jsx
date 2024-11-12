@@ -7,16 +7,36 @@ const sizes = {
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
+    ${({ theme }) => css`
+      @media (max-width: ${theme.breakpoints.tabletSmall}) {
+        font-size: 1rem;
+      }
+    `}
   `,
   medium: css`
     font-size: 1.4rem;
     padding: 1.2rem 1.6rem;
     font-weight: 500;
+
+    ${({ theme }) => css`
+      @media (max-width: ${theme.breakpoints.tabletSmall}) {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+      }
+    `}
   `,
   large: css`
     font-size: 1.6rem;
-    padding: 1.2rem 2.4rem;
+    padding: 0.9rem 3rem;
     font-weight: 500;
+    min-width: 15rem;
+
+    ${({ theme }) => css`
+      @media (max-width: ${theme.breakpoints.tabletSmall}) {
+        font-size: 1.3rem;
+        padding: 0.9rem 1.9rem;
+      }
+    `}
   `,
 };
 
@@ -39,9 +59,9 @@ const variations = {
     color: var(--color-grey-0);
     background-color: var(--color-red);
 
-    /* &:hover {
-      background-color: var(--color-red-800);
-    } */
+    &:hover {
+      background-color: var(--color-primary);
+    }
   `,
 };
 

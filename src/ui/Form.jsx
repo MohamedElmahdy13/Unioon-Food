@@ -18,9 +18,9 @@ const Form = styled.form`
       width: 80rem;
     `}
 
-  overflow: hidden;
+  /* overflow: hidden; */
   font-size: 1.4rem;
-  /* padding: 1.5rem 3rem; */
+  padding: 0rem 0.3rem;
 `;
 
 export default Form;

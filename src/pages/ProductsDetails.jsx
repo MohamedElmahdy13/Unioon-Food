@@ -2,8 +2,9 @@ import { Container, Row, Col } from "reactstrap";
 import NavTabs from "./../ui/NavTabs";
 import { useParams } from "react-router-dom";
 import ImageZoom from "../ui/ImageZoom";
-import ProductInfo from "../ui/ProductInfo";
+import ProductInfo from "../features/ProductDetails/ProductInfo.jsx";
 import ProductDetailsFooter from "../features/ProductDetails/ProductDetailsFooter";
+
 function ProductsDetails() {
   const params = useParams();
   return (
