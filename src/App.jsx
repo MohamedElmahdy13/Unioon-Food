@@ -1,11 +1,12 @@
 import GlobalStyles from "./styles/GlobalStyles.js";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./Layouts/AppLayout.jsx";
 import Home from "./pages/Home.jsx";
 import Category from "./pages/Category.jsx";
-import { Button } from "@material-tailwind/react";
+import ProductsDetails from "./pages/ProductsDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const routes = createBrowserRouter([
       {
         path: "/category/:name",
         element: <Category />,
+      },
+      {
+        path: "product/:name",
+        element: <ProductsDetails />,
       },
     ],
   },

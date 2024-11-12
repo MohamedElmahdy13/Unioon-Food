@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
         --color-blue: #126abf;
         --color-red: red;
         --backdrop-color: rgba(255, 255, 255, 0.1);
+        --color-text:#000;
 
         --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
         --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
@@ -39,9 +40,9 @@ const GlobalStyles = createGlobalStyle`
         transition: background-color 0.3s, border 0.3s;
         }
 
-    //html {
-    //    font-size: 62.5%;
-    //    }
+    html {
+        font-size: 62.5%;
+        }
 
     body {
         font-family: "Poppins", sans-serif;

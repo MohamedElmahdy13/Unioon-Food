@@ -16,7 +16,9 @@ const StyledCartButtons = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 14px;
 
+    /* Apply smaller padding and font size on smaller screens */
     @media only screen and (max-width: 768px) {
       padding: 4px 14px;
       font-size: 12px;
@@ -39,15 +41,27 @@ const StyledCartButtons = styled.div`
     align-items: center;
     margin: 0;
     height: 40px;
+    font-size: 14px;
+
+    /* Apply larger padding if size is lg */
+    ${({ size }) =>
+      size === "lg" &&
+      `
+        padding: 14px 50px;
+        font-size: 16px;
+      `}
+
+    /* Override padding and font size for smaller screens */
     @media only screen and (max-width: 768px) {
-      padding: 4px 12px;
+      padding: ${({ size }) => (size === "lg" ? "13px 24px" : "4px 12px")};
       font-size: 12px;
     }
   }
 `;
-const CartButtons = () => {
+
+const CartButtons = ({ size }) => {
   return (
-    <StyledCartButtons>
+    <StyledCartButtons size={size}>
       <button>
         <BsPlus />
       </button>

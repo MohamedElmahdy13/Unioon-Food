@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Col, Row } from "reactstrap";
 import ProductCard from "./ProductCard.jsx";
+import Paginations from "./Paginations";
 
 const StyledCategoryProducts = styled.div``;
 
@@ -64,6 +65,9 @@ const CategoryProducts = () => {
         </Col>{" "}
         <Col xl={2} lg={3} md={4} sm={1}>
           <ProductCard />
+        </Col>
+        <Col sm={12}>
+          <Paginations />
         </Col>
       </Row>
     </StyledCategoryProducts>

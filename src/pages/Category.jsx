@@ -1,14 +1,9 @@
 import { Col, Container, Row } from "reactstrap";
-import styled from "styled-components";
 import Filters from "../ui/Filters.jsx";
 import FiltersCategoryBar from "../ui/FiltersCategoryBar.jsx";
 import CategoryProducts from "../ui/CategoryProducts.jsx";
 import NavTabs from "../ui/NavTabs.jsx";
-
-const StyledCategoryTitle = styled.h1`
-  font-size: 20px;
-  font-weight: 700;
-`;
+import { StyledTitle } from "./../ui/headers";
 
 const Category = () => {
   return (
@@ -18,7 +13,7 @@ const Category = () => {
           <NavTabs />
         </Col>
         <Col sm={12}>
-          <StyledCategoryTitle>Best Deals On Fresh Food</StyledCategoryTitle>
+          <StyledTitle>Best Deals On Fresh Food</StyledTitle>
         </Col>
         <Col xl={3}>
           <Filters />
