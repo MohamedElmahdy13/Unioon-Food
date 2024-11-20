@@ -1,242 +1,260 @@
-import styled from "styled-components";
-import React, { useState } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from "reactstrap";
+import styled, { css } from "styled-components";
+import { useState } from "react";
 import SearchInput from "./SearchInput.jsx";
 
-// Styled Navbar
-const StyledNavbar = styled(Navbar)`
+// Styled Components
+const NavbarContainer = styled.nav`
+  width: 100%;
   background-color: var(--color-grey-0);
-  padding: 1rem 2rem;
+  box-shadow: var(--shadow-md);
   position: relative;
-  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.15);
-
-  .navbar-brand {
-    color: var(--color-primary);
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-
-  .nav-link {
-    color: var(--color-primary);
-    margin: 0 0.5rem;
-    border-bottom: 2px solid transparent;
-
-    &:hover,
-    &.active {
-      border-bottom: 2px solid var(--color-primary);
-    }
-  }
+  padding-inline-start: 1.6rem;
+  padding-block: 1.6rem;
+  border-top: 0.9rem solid var(--color-primary);
 `;
 
-// Styled Nav Item with hover behavior
-const StyledNavItem = styled(NavItem)`
-  &:hover .dropdown-menu,
-  .dropdown-menu:hover {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-  }
-`;
-
-// Styled Dropdown Menu
-const StyledDropdownMenu = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  width: 80%;
-  background-color: var(--color-grey-0);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1rem 2rem;
-  z-index: 9;
-  display: block;
-  transform: translateX(-50%) translateY(-10px);
-  transition: all 0.3s ease;
-  opacity: 0;
-  visibility: hidden;
-  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.15);
-
-  .dropdown-item {
-    color: #000;
-    padding: 0.5rem 1rem;
-
-    &:hover {
-      color: var(--color-primary);
-      background-color: #0d6efd;
-    }
-  }
-
-  .dropdown-wrapper {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-
-    h5 {
-      font-size: 1.6rem;
-    }
-
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-
-      a {
-        font-size: 1.3rem;
-      }
-    }
-  }
-`;
-const StyledNavbarContainer = styled.div`
-  background-color: var(--color-grey-0);
-  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.15);
-`;
-
-// First Row
-const StyledNavbarFirstRow = styled.div`
+const NavbarFirstRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
   align-items: center;
   padding: 1rem 2rem;
+  justify-content: space-between;
 
-  .navbar-brand {
-    img {
-      max-height: 50px;
-    }
-  }
-
-  .search-bar {
-    flex: 1;
-    margin-left: 2rem;
-
-    input {
-      width: 100%;
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--color-grey-300);
-      border-radius: 4px;
-      font-size: 1rem;
-
-      &:focus {
-        outline: none;
-        border-color: var(--color-primary);
-      }
-    }
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 1rem;
   }
 `;
 
-// Second Row
-const StyledNavbarSecondRow = styled.div`
+const Logo = styled.div`
+  img {
+    max-height: 50px;
+  }
+`;
+
+const SearchContainer = styled.div`
+  flex-basis: 50%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin: 1rem 0;
+  }
+`;
+
+const NavbarSecondRow = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 0.5rem 2rem;
-`;
-// Styled Navbar Toggler
-const StyledToggler = styled(NavbarToggler)`
-  border: none;
-  color: var(--color-primary);
-  background: tomato;
+  background-color: var(--color-grey-0);
 
-  &:focus {
-    outline: none;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
   }
 
-  // Hide toggle on large screens
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: flex;
+  }
+`;
+
+const NavMenu = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    flex-direction: row;
+  }
+`;
+
+const NavItem = styled.li`
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: auto;
+    text-align: left;
+
+    &:hover > ul {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+`;
+
+const NavLink = styled.a`
+  text-decoration: none;
+  color: var(--color-text);
+  transition: all 400ms ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.4rem;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+`;
+
+const DropdownMenu = styled.ul`
+  display: block; /* Default to block for mobile */
+  opacity: 1;
+  visibility: visible;
+  position: static;
+  background-color: var(--color-grey-0);
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 1rem;
+  transition: all 400ms ease-in-out;
+  border-radius: 4px;
+
+  a {
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: block; /* Always show dropdown in mobile */
+    opacity: 1;
+    visibility: visible;
+    font-size: 1.2rem;
+    padding-inline-start: 1rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 250px;
+    display: none; /* Hidden by default on larger screens */
+    opacity: 0;
+    visibility: hidden;
+  }
+`;
+
+const DropdownItem = styled.li`
+  padding: 0.5rem 0;
+  width: 100%;
+  text-align: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    text-align: left;
+  }
+
+  &:hover {
+    background-color: var(--color-grey-light);
+  }
+`;
+
+const MobileToggle = styled.div`
+  display: block;
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-grey-0);
+  border-radius: 4px;
+  text-align: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     display: none;
   }
 `;
 
-const ResponsiveNavbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(null);
+const DropdownToggleIcon = styled.span`
+  transition: transform 0.3s ease;
 
-  const toggle = () => setIsOpen(!isOpen);
+  ${({ $isOpen }) =>
+    $isOpen &&
+    css`
+      transform: rotate(180deg);
+    `};
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: none;
+  }
+`;
 
-  const handleMouseEnter = (menuName) => setActiveMenu(menuName);
-  const handleMouseLeave = (menuName) => {
-    if (activeMenu === menuName) {
-      setActiveMenu(null);
+// Dropdown Component
+const NavItemWithDropdown = ({ title, children }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = (e) => {
+    if (window.innerWidth < 768) {
+      e.preventDefault();
+      setIsDropdownOpen(!isDropdownOpen);
     }
   };
 
   return (
-    <StyledNavbarContainer>
+    <NavItem>
+      <NavLink href="#" onClick={toggleDropdown}>
+        {title}
+        {window.innerWidth < 768 && (
+          <DropdownToggleIcon $isOpen={isDropdownOpen}>▼</DropdownToggleIcon>
+        )}
+      </NavLink>
+      <DropdownMenu>{children}</DropdownMenu>
+    </NavItem>
+  );
+};
+
+// Main Navbar Component
+const ResponsiveNavbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  return (
+    <NavbarContainer>
       {/* First Row */}
-      <StyledNavbarFirstRow>
-        <NavbarBrand href="/">
-          <img src="../../public/images/logo.svg" alt="logo" />
-        </NavbarBrand>
-        <div className="search-bar">
+      <NavbarFirstRow>
+        <Logo>
+          <img src="../../public/images/logo.svg" alt="Logo" />
+        </Logo>
+
+        <SearchContainer>
           <SearchInput />
-        </div>
-        <StyledToggler onClick={toggle} />
-      </StyledNavbarFirstRow>
+        </SearchContainer>
+
+        <MobileToggle onClick={toggleMobileMenu}>
+          {isMobileMenuOpen ? "✕" : "☰"}
+        </MobileToggle>
+      </NavbarFirstRow>
 
       {/* Second Row */}
-      <Collapse isOpen={isOpen} navbar>
-        <StyledNavbarSecondRow>
-          <Nav navbar>
-            <StyledNavItem>
-              <NavLink
-                href="/"
-                className={activeMenu === "home" ? "active" : ""}
-              >
-                Home
-              </NavLink>
-            </StyledNavItem>
-            <StyledNavItem>
-              <NavLink
-                href="/about"
-                className={activeMenu === "about" ? "active" : ""}
-              >
-                About
-              </NavLink>
-            </StyledNavItem>
-            <StyledNavItem
-              onMouseEnter={() => handleMouseEnter("services")}
-              onMouseLeave={() => handleMouseLeave("services")}
-            >
-              <NavLink
-                href="/services"
-                className={activeMenu === "services" ? "active" : ""}
-              >
-                Services
-              </NavLink>
-              <StyledDropdownMenu className="dropdown-menu">
-                <div className="dropdown-wrapper">
-                  {[...Array(5)].map((_, idx) => (
-                    <div className="dropdown-section" key={idx}>
-                      <h5>Title {idx + 1}</h5>
-                      <ul>
-                        {[...Array(4)].map((_, itemIdx) => (
-                          <li key={itemIdx}>
-                            <a href="">Item {itemIdx + 1}</a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </StyledDropdownMenu>
-            </StyledNavItem>
-            <StyledNavItem>
-              <NavLink
-                href="/contact"
-                className={activeMenu === "contact" ? "active" : ""}
-              >
-                Contact
-              </NavLink>
-            </StyledNavItem>
-          </Nav>
-        </StyledNavbarSecondRow>
-      </Collapse>
-    </StyledNavbarContainer>
+      <NavbarSecondRow $isOpen={isMobileMenuOpen}>
+        <NavMenu>
+          <NavItem>
+            <NavLink href="#">Home</NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink href="#">About</NavLink>
+          </NavItem>
+
+          <NavItemWithDropdown title="Services">
+            <DropdownItem>
+              <NavLink href="/service1">Service 1</NavLink>
+            </DropdownItem>
+            <DropdownItem>
+              <NavLink href="/service2">Service 2</NavLink>
+            </DropdownItem>
+            <DropdownItem>
+              <NavLink href="/service3">Service 3</NavLink>
+            </DropdownItem>
+          </NavItemWithDropdown>
+
+          <NavItem>
+            <NavLink href="#">Contact</NavLink>
+          </NavItem>
+        </NavMenu>
+      </NavbarSecondRow>
+    </NavbarContainer>
   );
 };
 

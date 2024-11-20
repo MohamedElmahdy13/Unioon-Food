@@ -3,7 +3,6 @@ import { IoSearch } from "react-icons/io5";
 
 const StyledSearchInput = styled.div`
   position: relative;
-  width: 100%;
 
   input {
     width: 100%;
