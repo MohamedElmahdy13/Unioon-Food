@@ -13,6 +13,7 @@ import {
 import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BiSolidUserCircle } from "react-icons/bi";
+import MenuAccordions from "./MenuAccordions.jsx";
 
 // Styled Components
 const StyledBurger = styled.button`
@@ -124,7 +125,6 @@ const NavBarMobile = () => {
     <div>
       <StyledBurger onClick={toggleOffcanvas}>
         <AiOutlineMenu />
-        Menu
       </StyledBurger>
       <StyledOffcanvas scrollable isOpen={isOpen} toggle={toggleOffcanvas}>
         <StyledOffcanvasBody>
@@ -152,7 +152,7 @@ const NavBarMobile = () => {
             <StyledTabPane tabId="1">
               <Row>
                 <Col sm="12">
-                  <h4>Tab 1 Contents</h4>
+                  <MenuAccordions />
                 </Col>
               </Row>
             </StyledTabPane>

@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
-import SearchInput from "./SearchInput.jsx";
+import SearchInput from "../SearchInput.jsx";
 import MainNavbar from "./MainNavbar.jsx";
-import DropDowns from "./DropDowns.jsx";
-import Cart from "../features/Cart/Cart.jsx";
-import Language from "./Language.jsx";
-import useWindowWidth from "../hooks/useWidthScreen.js";
+import DropDowns from "../DropDowns.jsx";
+import Cart from "../../features/Cart/Cart.jsx";
+import Language from "../Language.jsx";
+import useWindowWidth from "../../hooks/useWidthScreen.js";
 import { AiOutlineMenu } from "react-icons/ai";
 import NavBarMobile from "./NavBarMobile.jsx";
 
@@ -73,7 +73,7 @@ const MainHeader = () => {
     <StyledMainHeader className={"main-header"}>
       <FirstRow>
         {width < 1024 && <NavBarMobile />}
-        <a href="/">
+        <a href="/public">
           <Logo src="../../public/images/logo.svg" alt="logo" />
         </a>
         <SearchItem>

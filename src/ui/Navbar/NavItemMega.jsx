@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import MegaMenu from "./MegaMenu"; // Import MegaMenu component
+import MegaMenu from "./MegaMenu.jsx"; // Import MegaMenu component
 
 const NavListItem = styled.li`
   &:hover .mega-menu {
