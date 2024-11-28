@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../ui/Footer.jsx";
 import styled from "styled-components";
-import ResponsiveNavbar from "../ui/MainNavbar.jsx";
+import MainHeader from "../ui/MainHeader.jsx";
 
 const StyledMain = styled.main`
   padding-block: 35px;
@@ -11,7 +11,7 @@ const AppLayout = () => {
     <>
       {/*Navbor */}
       <header>
-        <ResponsiveNavbar />
+        <MainHeader />
       </header>
       <StyledMain>
         <Outlet></Outlet>

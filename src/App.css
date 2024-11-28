@@ -1,63 +1,80 @@
 body {
-  font-size: 14px;
-}
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    }
 
 ol,
 ul {
-  padding: 0;
-}
+    padding: 0;
+    margin: 0;
+    }
 
 p {
-  margin: 0;
-  padding: 0;
-}
+    margin: 0;
+    padding: 0;
+    }
 
 button.slick-arrow {
-  box-shadow: var(--shadow-lg);
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-}
+    box-shadow: var(--shadow-lg);
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    }
 
 button.slick-prev {
-  left: 0%;
-  z-index: 3;
-  background: var(--color-grey-0);
-}
+    left: 0; /* For LTR: place the button to the left */
+    right: auto; /* Reset any RTL-specific properties */
+    background: var(--color-grey-0);
+    }
 
 button.slick-next {
-  right: 0%;
-  z-index: 3;
-  background: var(--color-grey-0);
-}
+    right: 0; /* For LTR: place the button to the right */
+    left: auto; /* Reset any RTL-specific properties */
+    background: var(--color-grey-0);
+    }
+
+/* RTL Adjustment */
+html[dir="rtl"] button.slick-prev {
+    right: 0; /* For RTL: place the 'prev' button on the right */
+    left: auto; /* Reset left */
+    }
+
+html[dir="rtl"] button.slick-next {
+    left: 0; /* For RTL: place the 'next' button on the left */
+    right: auto; /* Reset right */
+    }
 
 .slick-slider .slick-prev:before,
 .slick-slider .slick-next:before {
-  color: black;
-  font-size: 14px;
-}
+    color: black;
+    font-size: 14px;
+    }
 
 .slick-slider .slick-slide.slick-current {
-  padding-inline-end: 15px;
-}
+    padding-inline-end: 15px;
+    }
 
 .slick-slider .slick-slide {
-  padding: 0 15px;
-}
+    padding: 0 15px;
+    }
 
 .slick-slider .slick-list {
-  padding: 15px 0;
-}
+    padding: 15px 0;
+    }
 
 @media only screen and (max-width: 500px) {
-  .slick-slider .slick-slide.slick-current {
-    padding-inline-end: 6px;
-  }
+    .slick-slider .slick-slide.slick-current {
+        padding-inline-end: 6px;
+        }
 
-  .slick-slider .slick-slide {
-    padding: 0 6px;
-  }
-}
+    .slick-slider .slick-slide {
+        padding: 0 6px;
+        }
+    }
 
 /*.home-slider .slick-slider .slick-slide {*/
 /*    padding: 15px;*/

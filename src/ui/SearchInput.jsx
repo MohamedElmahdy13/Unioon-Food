@@ -6,10 +6,10 @@ const StyledSearchInput = styled.div`
 
   input {
     width: 100%;
-    padding: 0.5rem 2.5rem 0.5rem 1rem; /* Adjust for search icon spacing */
+    padding: 1.1rem 4rem;
     border: 1px solid var(--color-primary);
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
     color: var(--color-primary);
 
     &::placeholder {
@@ -26,11 +26,11 @@ const StyledSearchInput = styled.div`
 
 const StyledSearchButton = styled(IoSearch)`
   position: absolute;
-  right: 0.75rem;
+  inset-inline-end: 1.2rem;
   top: 50%;
   transform: translateY(-50%);
   color: var(--color-primary);
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   cursor: pointer;
 `;
 

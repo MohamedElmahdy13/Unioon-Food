@@ -26,11 +26,14 @@ const StyledCartButtons = styled.div`
   }
 
   button:first-child {
-    border-radius: 30px 0 0 30px;
+    //border-radius: 30px 0 0 30px;
+    border-start-start-radius: 3rem;
+    border-end-start-radius: 3rem;
   }
 
   button:last-child {
-    border-radius: 0 23px 23px 0;
+    border-start-end-radius: 3rem;
+    border-end-end-radius: 3rem;
   }
 
   p {
@@ -49,10 +52,8 @@ const StyledCartButtons = styled.div`
       `
         padding: 14px 50px;
         font-size: 16px;
-      `}
-
-    /* Override padding and font size for smaller screens */
-    @media only screen and (max-width: 768px) {
+      `} /* Override padding and font size for smaller screens */ @media only screen and (
+        max-width: 768px) {
       padding: ${({ size }) => (size === "lg" ? "13px 24px" : "4px 12px")};
       font-size: 12px;
     }
