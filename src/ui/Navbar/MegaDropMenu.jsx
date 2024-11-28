@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { BiPlus, BiMinus } from "react-icons/bi";
-import useWindowWidth from "../../hooks/useWidthScreen.js";
+import { theme } from "../../styles/theme.js";
 
 const Container = styled.div`
   ${({ theme }) => css`
@@ -17,7 +17,32 @@ const Container = styled.div`
   `}
 `;
 
+const CollapseButton = styled.button`
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+  padding: 1rem 1.5rem;
+  background: #fff;
+  border: none;
+  //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: 100%;
+  text-align: start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: ${theme.breakpoints.tabletWide}) {
+    display: none;
+  }
+`;
+
 const MenuWrapper = styled.div`
+  ${({ theme, isVisible }) => css`
+    @media (max-width: ${theme.breakpoints.tabletWide}) {
+      display: ${isVisible ? "block" : "none"};
+    }
+  `}
   ${({ theme }) => css`
     @media (min-width: ${theme.breakpoints.tabletWide}) {
       position: absolute;
@@ -57,13 +82,17 @@ const MenuButton = styled.button`
   cursor: pointer;
   width: 100%;
   text-align: start;
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
 
   &:hover {
     background: #f9f9f9;
     color: var(--color-primary, #0d9bbd);
+  }
+
+  @media (min-width: ${theme.breakpoints.tabletWide}) {
+    display: flex;
   }
 `;
 
@@ -162,58 +191,53 @@ const SubMenuItemWithHover = styled.div`
 
 const MegaDropMenu = () => {
   const [activeMenu, setActiveMenu] = useState(null);
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const toggleMenuVisibility = () => {
-    setIsMenuVisible((prev) => !prev);
-  };
-
-  const width = useWindowWidth();
+  const [isMenuVisible, setIsMenuVisible] = useState(false); //
   const handleMenuClick = (menu) => {
     setActiveMenu((prev) => (prev === menu ? null : menu));
   };
-
+  const toggleMenuVisibility = () => {
+    setIsMenuVisible((prev) => !prev);
+  };
   return (
     <Container>
-      <MenuButton onClick={toggleMenuVisibility}>
-        All Categories
-        {width < 1025 ? isMenuVisible < 1025 ? <BiMinus /> : <BiPlus /> : null}
-      </MenuButton>
-      {isMenuVisible && (
-        <MenuWrapper className="menu-wrapper">
-          <MenuList>
-            <MenuItem>
-              <MenuLink onClick={() => handleMenuClick("fresh-food")}>
-                Fresh Food
-                {activeMenu === "fresh-food" ? <BiMinus /> : <BiPlus />}
-              </MenuLink>
-              {activeMenu === "fresh-food" && (
-                <SubMenu>
-                  <SubMenuTitle>Fruits & Vegetables</SubMenuTitle>
-                  <SubMenuItemWithHover>
-                    <SubMenuItem href="#">Fruits</SubMenuItem>
-                    <SubSubMenu>
-                      <SubSubMenuItem href="#">Apples</SubSubMenuItem>
-                      <SubSubMenuItem href="#">Bananas</SubSubMenuItem>
-                      <SubSubMenuItem href="#">Berries</SubSubMenuItem>
-                    </SubSubMenu>
-                  </SubMenuItemWithHover>
-                  <SubMenuItem href="#">Vegetables</SubMenuItem>
-                  <SubMenuItem href="#">Organic F & V</SubMenuItem>
-                  <SubMenuItem href="#">Leafy Greens</SubMenuItem>
-                  <SubMenuItem href="#">Fresh Salad & Chopped</SubMenuItem>
-                </SubMenu>
-              )}
-            </MenuItem>
+      <MenuButton>All Categories</MenuButton>
+      <CollapseButton onClick={toggleMenuVisibility}>
+        All Categories {isMenuVisible ? <BiMinus /> : <BiPlus />}
+      </CollapseButton>
+      <MenuWrapper isVisible={isMenuVisible} className="menu-wrapper">
+        <MenuList>
+          <MenuItem>
+            <MenuLink onClick={() => handleMenuClick("fresh-food")}>
+              Fresh Food
+              {activeMenu === "fresh-food" ? <BiMinus /> : <BiPlus />}
+            </MenuLink>
+            {activeMenu === "fresh-food" && (
+              <SubMenu>
+                <SubMenuTitle>Fruits & Vegetables</SubMenuTitle>
+                <SubMenuItemWithHover>
+                  <SubMenuItem href="#">Fruits</SubMenuItem>
+                  <SubSubMenu>
+                    <SubSubMenuItem href="#">Apples</SubSubMenuItem>
+                    <SubSubMenuItem href="#">Bananas</SubSubMenuItem>
+                    <SubSubMenuItem href="#">Berries</SubSubMenuItem>
+                  </SubSubMenu>
+                </SubMenuItemWithHover>
+                <SubMenuItem href="#">Vegetables</SubMenuItem>
+                <SubMenuItem href="#">Organic F & V</SubMenuItem>
+                <SubMenuItem href="#">Leafy Greens</SubMenuItem>
+                <SubMenuItem href="#">Fresh Salad & Chopped</SubMenuItem>
+              </SubMenu>
+            )}
+          </MenuItem>
 
-            <MenuItem>
-              <MenuLink onClick={() => handleMenuClick("beverages")}>
-                Beverages
-                {activeMenu === "beverages" ? <BiMinus /> : <BiPlus />}
-              </MenuLink>
-            </MenuItem>
-          </MenuList>
-        </MenuWrapper>
-      )}
+          <MenuItem>
+            <MenuLink onClick={() => handleMenuClick("beverages")}>
+              Beverages
+              {activeMenu === "beverages" ? <BiMinus /> : <BiPlus />}
+            </MenuLink>
+          </MenuItem>
+        </MenuList>
+      </MenuWrapper>
     </Container>
   );
 };

@@ -1,9 +1,9 @@
-import MegaDropMenu from "./MegaDropMenu.jsx";
+import MainNavbar from "./MainNavbar.jsx";
 
 const MenuAccordions = () => {
   return (
     <div>
-      <MegaDropMenu />
+      <MainNavbar />
     </div>
   );
 };

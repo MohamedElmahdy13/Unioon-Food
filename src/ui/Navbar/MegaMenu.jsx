@@ -1,31 +1,40 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledMegaMenu = styled.div`
-  position: absolute; /* Relative to the NavListItem */
-  width: 80%;
-  transition: 400ms ease-in-out;
-  top: 100%; /* Align directly below the NavListItem */
-  left: 50%; /* Align to the start of the NavListItem */
-  background: var(--color-grey-0);
-  z-index: 99;
-  padding: 1.4rem 2.4rem;
-  border-end-start-radius: 0.8rem;
-  border-end-end-radius: 0.8rem;
-  box-shadow: var(--shadow-lg);
+  padding-inline-start: 1rem;
+  ${({ theme, isVisible }) => css`
+    @media (max-width: ${theme.breakpoints.tabletWide}) {
+      display: ${isVisible ? "block" : "none"};
+    }
+  `}
+  ${({ theme }) => css`
+    @media (min-width: ${theme.breakpoints.tabletWide}) {
+      position: absolute; /* Relative to the NavListItem */
+      width: 80%;
+      transition: 400ms ease-in-out;
+      top: 100%; /* Align directly below the NavListItem */
+      left: 50%; /* Align to the start of the NavListItem */
+      background: var(--color-grey-0);
+      z-index: 99;
+      padding: 1.4rem 2.4rem;
+      border-end-start-radius: 0.8rem;
+      border-end-end-radius: 0.8rem;
+      box-shadow: var(--shadow-lg);
 
-  /* Initially hidden */
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(15%) translateX(-50%);
+      /* Initially hidden */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(15%) translateX(-50%);
 
-  /* Hovering over MegaMenu keeps it visible */
-
-  &:hover {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(15%) translateX(-50%);
-  }
+      /* Hovering over MegaMenu keeps it visible */
+      &:hover {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(15%) translateX(-50%);
+      }
+    }
+  `}
 `;
 
 const MegaMenuContainer = styled.div`
@@ -51,9 +60,9 @@ const MegaMenuList = styled.ul`
   flex-direction: column;
 `;
 
-const MegaMenu = () => {
+const MegaMenu = ({ isVisible }) => {
   return (
-    <StyledMegaMenu className="mega-menu">
+    <StyledMegaMenu isVisible={isVisible} className="mega-menu">
       <MegaMenuContainer>
         <MegaMenuListSection>
           <MegaMenuTitle>Categories</MegaMenuTitle>
